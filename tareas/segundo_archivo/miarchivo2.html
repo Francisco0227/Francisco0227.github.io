@@ -68,7 +68,11 @@
         document.getElementById("encabezado").appendChild(d2);
         d2.setAttribute("style", "color:blue")
       }
-      document.getElementById("miBoton").addEventListener("click", obtenerServidor);
+      
+      document.getElementById("miBoton").addEventListener("click", () => {
+        obtenerJSON();
+        obtenerServidor();
+      });
     </script>
 
   </body>
