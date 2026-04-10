@@ -1,69 +1,63 @@
-/* Mis más sinceras disculpas por lo que estás a punto de ver. */
-
 body {
-    background-color: #00FF00; /* Verde neón que ciega */
-    color: #FF00FF; /* Texto magenta penetrante */
-    font-family: "Comic Sans MS", "Papyrus", cursive;
-    text-align: center;
-    margin: 20px;
-    cursor: crosshair; /* Cursor extraño de mira */
+    background-color: yellow; 
+    color: lime; 
+    font-family: "Comic Sans MS"; 
+    font-size: 25px; 
 }
 
-h1, h2, h3 {
-    background-color: yellow;
-    color: red;
-    border: 10px dotted blue; /* Borde punteado azul */
-    padding: 10px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 5px black;
+h1 {
+    background-color: red;
+    color: blue;
+    text-align: right; 
+    text-decoration: underline overline;
+}
+
+h2 {
+    background-color: fuchsia; 
+    color: green;
+    border: 20px solid orange; 
 }
 
 p {
-    font-size: 20px;
-    background-color: aqua;
-    border: 5px solid orange;
-    padding: 15px;
-    font-weight: bold;
+    background-color: black;
+    color: navy;
+    border: 5px dotted white;
+    padding: 0px;
+    margin: 50px; 
 }
 
 ul, ol {
-    background-color: pink;
-    border: 15px double purple; /* Borde doble morado */
-    font-size: 24px;
-    list-style-type: square;
-    text-align: left;
-    display: inline-block;
+    background-color: aqua; 
+    color: maroon; 
+    font-size: 40px; 
+}
+
+li {
+    border: 2px solid pink;
 }
 
 table {
-    border: 15px outset brown;
-    background-color: black;
-    color: white;
-    margin: 0 auto;
-    font-size: 25px;
-    width: 80%;
+    background-color: gray;
+    color: yellow;
+    border: 15px double red; 
+    width: 100%;
 }
 
 th, td {
-    border: 5px dashed lime;
-    padding: 20px;
+    border: 5px solid blue;
+    padding: 1px;
 }
 
-/* Ejemplo del Modelo de Caja */
 .ugly-box {
-    background-color: #ffaa00; /* Color de fondo del contenido */
-    padding: 40px; /* Espacio por dentro del borde */
-    border: 20px dashed red; /* El marco en sí */
-    margin: 50px; /* Espacio por fuera del borde */
-    color: black;
-    font-size: 30px;
+    background-color: purple;
+    color: black; 
+    border: 30px solid green; 
+    padding: 2px; 
+    margin: 100px; 
 }
 
 em {
-    background-color: white;
-    color: black;
-    font-size: 14px;
-    border: 2px solid black;
-    display: block;
-    margin-top: 10px;
+    background-color: brown;
+    color: white;
+    font-size: 10px;
 }
