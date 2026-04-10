@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>WikiLeaks - V3 Clon Estético</title>
     <style>
-        /* Reset y estilos generales */
+        
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
@@ -13,7 +13,7 @@
             color: #333;
         }
 
-        /* Navbar Superior (Flexbox) */
+        
         .top-navigation {
             background-color: #fff;
             border-bottom: 1px solid #e5e5e5;
@@ -56,7 +56,6 @@
             font-weight: bold;
         }
 
-        /* Buscador central */
         .search-box {
             text-align: center;
             padding: 40px 0 20px 0;
@@ -69,7 +68,7 @@
             border-radius: 4px;
         }
 
-        /* Etiquetas de Categorías */
+       
         .tag-navigation {
             list-style: none;
             display: flex;
@@ -91,11 +90,12 @@
             text-transform: uppercase;
         }
 
-        /* Contenedor Principal */
+       
         .content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            margin-bottom: 60px;
         }
         
         .content > h1 {
@@ -105,7 +105,6 @@
             margin-bottom: 20px;
         }
 
-        /* Grid Avanzado del Clon */
         .grid {
             list-style: none;
             padding: 0;
@@ -122,7 +121,6 @@
             flex-direction: column;
         }
 
-        /* Hace que el primer elemento ocupe 2 columnas si hay espacio */
         .double-sized {
             grid-column: span 2;
         }
@@ -130,7 +128,7 @@
         .tile img {
             width: 100%;
             height: 240px;
-            object-fit: cover; /* Recorta la imagen para que quede perfecta en la caja */
+            object-fit: cover; 
             display: block;
         }
 
@@ -155,6 +153,50 @@
             font-size: 12px;
             color: #888;
             font-weight: bold;
+        }
+
+        #page-footer {
+            background-color: #f8f8f8;
+            border-top: 1px solid #ddd;
+            padding: 40px 20px;
+        }
+
+        .footer-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-wrapper .top {
+            display: block;
+            text-align: left;
+            margin-bottom: 20px;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .recommendation-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .recommendation a {
+            text-decoration: none;
+            color: #555;
+            font-size: 13px;
+            line-height: 1.5;
+            display: block;
+        }
+
+        .recommendation img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -251,6 +293,45 @@
             </li>
         </ul>
     </div>
+
+    <footer id="page-footer">
+        <div class="footer-wrapper">
+            <a href="#" class="top">Top</a>
+            
+            <ul class="recommendation-links">
+                <li class="recommendation">
+                    <a href="#">
+                        <img src="https://wikileaks.org/IMG/arton666.png" alt="WL Research">
+                        <p>WL Research Community - user contributed research based on documents published by WikiLeaks.</p>
+                    </a>
+                </li>
+                <li class="recommendation">
+                    <a href="#">
+                        <img src="https://wikileaks.org/IMG/arton401.png" alt="Tor">
+                        <p>Tor is an encrypted anonymising network that makes it harder to intercept internet communications, or see where communications are coming from or going to.</p>
+                    </a>
+                </li>
+                <li class="recommendation">
+                    <a href="#">
+                        <img src="https://wikileaks.org/IMG/arton405.png" alt="Tails">
+                        <p>Tails is a live operating system, that you can start on almost any computer from a DVD, USB stick, or SD card. It aims at preserving your privacy and anonymity.</p>
+                    </a>
+                </li>
+                <li class="recommendation">
+                    <a href="#">
+                        <img src="https://wikileaks.org/IMG/arton404.png" alt="Courage">
+                        <p>The Courage Foundation is an international organisation that supports those who risk life or liberty to make significant contributions to the historical record.</p>
+                    </a>
+                </li>
+                <li class="recommendation">
+                    <a href="#">
+                        <img src="https://wikileaks.org/IMG/arton403.png" alt="Bitcoin">
+                        <p>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network.</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 
 </body>
 </html>
