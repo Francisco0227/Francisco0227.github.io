@@ -1,1 +1,69 @@
+/* Mis más sinceras disculpas por lo que estás a punto de ver. */
 
+body {
+    background-color: #00FF00; /* Verde neón que ciega */
+    color: #FF00FF; /* Texto magenta penetrante */
+    font-family: "Comic Sans MS", "Papyrus", cursive;
+    text-align: center;
+    margin: 20px;
+    cursor: crosshair; /* Cursor extraño de mira */
+}
+
+h1, h2, h3 {
+    background-color: yellow;
+    color: red;
+    border: 10px dotted blue; /* Borde punteado azul */
+    padding: 10px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px black;
+}
+
+p {
+    font-size: 20px;
+    background-color: aqua;
+    border: 5px solid orange;
+    padding: 15px;
+    font-weight: bold;
+}
+
+ul, ol {
+    background-color: pink;
+    border: 15px double purple; /* Borde doble morado */
+    font-size: 24px;
+    list-style-type: square;
+    text-align: left;
+    display: inline-block;
+}
+
+table {
+    border: 15px outset brown;
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+    font-size: 25px;
+    width: 80%;
+}
+
+th, td {
+    border: 5px dashed lime;
+    padding: 20px;
+}
+
+/* Ejemplo del Modelo de Caja */
+.ugly-box {
+    background-color: #ffaa00; /* Color de fondo del contenido */
+    padding: 40px; /* Espacio por dentro del borde */
+    border: 20px dashed red; /* El marco en sí */
+    margin: 50px; /* Espacio por fuera del borde */
+    color: black;
+    font-size: 30px;
+}
+
+em {
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    border: 2px solid black;
+    display: block;
+    margin-top: 10px;
+}
