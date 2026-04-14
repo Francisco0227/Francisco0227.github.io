@@ -110,7 +110,7 @@
       async function votar() {
         try {
           const respuesta = await fetch("https://api.thedogapi.com/v1/votes", {
-            method: "GET",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
               "x-api-key":
