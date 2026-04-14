@@ -39,6 +39,9 @@
     </div>
     <div id="perro"></div>
     <button id="un_boton">Haz algo</button>
+
+    <button id="votar_boton">Vota por este perro</button>
+
     <div class="flex two four-1200 demo">
       <div id="bio">1</div>
       <div id="imagen">2</div>
@@ -91,6 +94,39 @@
 
           document.getElementById("perro").innerHTML =
             `<img src="${data[0].url}" alt="Imagen del perro style="max-width: 100%; border-radius: 8px;">`;
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      }
+
+      let votar_boton;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        votar_boton = document.getElementById("votar_boton");
+        votar_boton.addEventListener("click", votar);
+        console.log("DOM listo");
+      });
+
+      async function votar() {
+        try {
+          const respuesta = await fetch("https://api.thedogapi.com/v1/votes", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key":
+                "live_P0NHBGnzWucYBQi2mqxOwke2hxlNynQXzm3gfzS3H1sDgoop7RFbshwtWOYrMXCc",
+            },
+            body: JSON.stringify({
+              image_id: "BJa4kxc4X",
+              value: 1,
+            }),
+          });
+          if (!respuesta.ok) {
+            console.log("Error");
+            //throw new Error("Error de algo");
+          }
+          const data = await respuesta.json();
+          console.log(data);
         } catch (error) {
           console.error("Error:", error.message);
         }
