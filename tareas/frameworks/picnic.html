@@ -73,7 +73,7 @@
       async function irPorAlgo() {
         try {
           const respuesta = await fetch(
-            "https://api.thedogapi.com/v1/facts/random",
+            "https://api.thedogapi.com/v1/breeds?limit=1",
             {
               method: "GET",
               headers: {
