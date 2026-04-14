@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-
+    <div id="perro"></div>
     <button id="un_boton">Haz algo</button>
     <div class="flex two four-1200 demo">
       <div id="bio">1</div>
@@ -89,7 +89,7 @@
           const data = await respuesta.json();
           console.log(data);
 
-          document.getElementById("imagen").innerHTML =
+          document.getElementById("perro").innerHTML =
             `<img src="${data[0].url}" alt="Imagen del perro style="max-width: 100%; border-radius: 8px;">`;
         } catch (error) {
           console.error("Error:", error.message);
