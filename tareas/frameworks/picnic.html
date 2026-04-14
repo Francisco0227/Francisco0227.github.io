@@ -88,11 +88,11 @@
           }
           const data = await respuesta.json();
           console.log(data);
-        } catch (error) {
-          console.error("Error:", error.message);
 
           document.getElementById("imagen").innerHTML =
             `<img src="${data[0].url}" alt="Imagen del perro">`;
+        } catch (error) {
+          console.error("Error:", error.message);
         }
       }
     </script>
