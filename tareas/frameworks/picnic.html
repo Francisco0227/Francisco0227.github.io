@@ -90,7 +90,7 @@
           console.log(data);
 
           document.getElementById("imagen").innerHTML =
-            `<img src="${data[0].url}" alt="Imagen del perro">`;
+            `<img src="${data[0].url}" alt="Imagen del perro style="max-width: 100%; border-radius: 8px;">`;
         } catch (error) {
           console.error("Error:", error.message);
         }
