@@ -1,83 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi página con Picnic CSS</title>
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi página con Picnic CSS</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic" />
 
-  
-  <style>
-    .flex.demo{
-     margin: .2em 0;
-     background: #dbe2dc;
-     text-align: center;
-    }
-    .flex.demo div {
-      border:.1em solid pink;
-    }
+    <style>
+      .flex.demo {
+        margin: 0.2em 0;
+        background: #dbe2dc;
+        text-align: center;
+      }
+      .flex.demo div {
+        border: 0.1em solid pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs three">
+      <input id="tab-1" type="radio" name="tabgroupB" checked />
+      <label class="pseudo button toggle" for="tab-1">Pregunta 1</label>
+      <input id="tab-2" type="radio" name="tabgroupB" />
+      <label class="pseudo button toggle" for="tab-2">Pregunta 2</label>
+      <div class="row">
+        <div>
+          <p>Vamos avanzando</p>
+        </div>
 
-  </style>
-</head>
-<body>
-  <div class="tabs three">
-  <input id='tab-1' type='radio' name='tabgroupB' checked />
-  <label class="pseudo button toggle" for="tab-1">Pregunta 1</label>
-  <input id='tab-2' type='radio' name='tabgroupB'>
-  <label class="pseudo button toggle" for="tab-2">Pregunta 2</label>
-  <div class="row">
-    <div>
-      <p> Vamos avanzando</p>
+        <div>
+          <p>
+            Siento que lo más complicado es aprender a programar extenciones de
+            chrome
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div>
-      <p>Siento que lo más complicado es aprender a programar extenciones de chrome</p>
+    <button id="un_boton">Haz algo</button>
+    <div class="flex two four-1200 demo">
+      <div id="bio">1</div>
+      <div id="imagen">2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
     </div>
-  </div>
-</div>
-
-  <button id="un_boton">Haz algo</button>
-  <div class="flex two four-1200 demo">
-    <div id="bio">1</div>
-    <div id="imagen">2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-  
-  </div>
 
     <script>
-    
-    let un_boton;
+      let un_boton;
 
-    document.addEventListener("DOMContentLoaded", function() {
-         // un_boton = document.getElementById();
-         // document.getElementById().addEventListener("click", );
-          //console.log("DOM listo");
-    });
+      document.addEventListener("DOMContentLoaded", function () {
+        un_boton = document.getElementById("un_boton");
+        un_boton.addEventListener("click", irPorAlgo);
+        //console.log("DOM listo");
+      });
 
-
-     async function obtenerJSON() {
-       // const respuesta = await fetch('');  
-       // const datos = await respuesta.json();
-       // console.log(datos);
-
+      async function obtenerJSON() {
+        // const respuesta = await fetch('');
+        // const datos = await respuesta.json();
+        // console.log(datos);
         //const textoArtista = document.createElement('p');
-        //textoArtista.textContent = 
+        //textoArtista.textContent =
         //biografia.appendChild(textoArtista);
-
         //const imagenArtista= document.createElement('');
-        
         //imagenArtista.setAttribute('src', '');
-     }
+      }
 
-
-
+      async function irPorAlgo() {
+        try {
+          const respuesta = await fetch(
+            "https://api.thedogapi.com/v1/facts/random",
+            {
+              method: "GET",
+              headers: {
+                "x-api-key": "YOUR-API-KEY",
+              },
+            },
+          );
+          if (!respuesta.ok) {
+            console.log("Error");
+            //throw new Error("Error");
+          }
+          const data = await respuesta.json();
+          console.log(data);
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
