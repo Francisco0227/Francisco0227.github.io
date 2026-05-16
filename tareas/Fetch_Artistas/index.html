@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title><!-- Ponle un título a tu página --></title>
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  <body>
+    <!-- BOTONES ARRIBA -->
+    <div class="botones">
+      <button id="imagine_dragon">Imagine Dragons</button>
+      <button id="coldplay">Coldplay</button>
+    </div>
+
+    <!-- INFO DEL ARTISTA ABAJO -->
+    <div class="artist">
+      <div id="img-container">
+        <img id="foto" />
+      </div>
+      <div class="decription">
+        <h2 id="nombre"></h2>
+        <p id="bio"></p>
+      </div>
+    </div>
+
+    <script>
+      // FUNCIÓN ARTISTA 1
+      async function getImagine() {
+        const respuesta = await fetch(
+          "https://www.theaudiodb.com/api/v1/json/123/artist.php?i=114415",
+        );
+        const datos = await respuesta.json();
+        const artista = datos.artists[0];
+
+        document.getElementById("foto").src = artista.strArtistThumb;
+        document.getElementById("nombre").textContent = artista.strArtist;
+        document.getElementById("bio").textContent =
+          artista.strBiographyES || artista.strBiographyEN;
+      }
+
+      // FUNCIÓN ARTISTA 2
+      async function getColdplay() {
+        const respuesta = await fetch(
+          "https://www.theaudiodb.com/api/v1/json/123/search.php?s=coldplay",
+        );
+        const datos = await respuesta.json();
+        const artista = datos.artists[0];
+
+        document.getElementById("foto").src = artista.strArtistThumb;
+        document.getElementById("nombre").textContent = artista.strArtist;
+        document.getElementById("bio").textContent =
+          artista.strBiographyES || artista.strBiographyEN;
+      }
+
+      // CONECTAR BOTONES CON FUNCIONES
+      document
+        .getElementById("imagine_dragon")
+        .addEventListener("click", getImagine);
+      document
+        .getElementById("coldplay")
+        .addEventListener("click", getColdplay);
+
+      // Cargar el primer artista al abrir la página
+      getImagine();
+    </script>
+  </body>
+</html>

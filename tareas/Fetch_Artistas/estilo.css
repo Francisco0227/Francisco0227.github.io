@@ -1,0 +1,14 @@
+body {
+  flex-direction: column;
+  align-items: center;
+}
+
+.botones {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+}
+
+.artist {
+  width: 60%;
+}

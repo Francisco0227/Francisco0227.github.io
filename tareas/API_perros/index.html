@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Practica API y Perros</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic" />
+    <style>
+      body {
+        padding: 2em;
+      }
+      /* Agrega aquí tus estilos personalizados */
+    </style>
+  </head>
+  <body>
+    <!-- BOTÓN 1: Traer foto de perro -->
+    <div>
+      <button id="boton">Muestra un perro</button>
+      <img id="foto" width="600px" height="500px" />
+    </div>
+
+    <!-- BOTÓN 2: Votar -->
+    <div>
+      <button id="vote">Vota por el perro</button>
+    </div>
+
+    <!-- BOTÓN 3: Ver votos -->
+    <div>
+      <button id="see_votes">Quieres ver los votos?</button>
+    </div>
+
+    <!-- AQUÍ MOSTRARÁS LOS VOTOS EN PANTALLA (no solo en consola) -->
+    <div id="mostrar">
+      <!-- Los votos aparecerán aquí -->
+    </div>
+
+    <!-- SECCIÓN DE PREGUNTAS -->
+    <div class="tabs two">
+      <input id="tab-1" type="radio" name="preguntas" checked />
+      <label class="pseudo button toggle" for="tab-1">Pregunta 1</label>
+
+      <input id="tab-2" type="radio" name="preguntas" />
+      <label class="pseudo button toggle" for="tab-2">Pregunta 2</label>
+
+      <div class="row">
+        <div>
+          <h3>¿Como vas con tu reto?</h3>
+          <p>
+            Considero que voy medianamente bien, tal vez algo más atrasados de
+            lo que deberiamos estar en este momento pero vamos avanzando poco a
+            poco
+          </p>
+        </div>
+        <div>
+          <h3>¿Que te parece lo mas complicado de tu reto?</h3>
+          <p>
+            Creo que lo más complicado puede ser la implementación de la
+            extención de chrome porque es algo de lo cual no tengo ni idea de
+            donde empezar
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Tu API key de thedogapi
+      const API_KEY =
+        "live_4010nXnpNuSgbuqv9gYPaNz6JYdKJH17BsyPoJm9iNqjKrI7CYMRb8oNyfHalvPo";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Conectar botón 1
+        document.getElementById("boton").addEventListener("click", traerPerro);
+        // Conectar botón 2
+        document.getElementById("vote").addEventListener("click", votar);
+        // Conectar botón 3
+        document
+          .getElementById("see_votes")
+          .addEventListener("click", verVotos);
+      });
+
+      // FUNCIÓN 1: Trae una foto aleatoria de perro
+      async function traerPerro() {
+        try {
+          const respuesta = await fetch(
+            "https://api.thedogapi.com/v1/images/search?limit=1",
+            {
+              method: "GET",
+              headers: {
+                "x-api-key": API_KEY,
+              },
+            },
+          );
+          const data = await respuesta.json();
+
+          // Aquí pones la imagen en el HTML
+          document.getElementById("foto").src = data[0].url;
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      }
+
+      // FUNCIÓN 2: Votar por una imagen
+      async function votar() {
+        try {
+          const respuesta = await fetch("https://api.thedogapi.com/v1/votes", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key": API_KEY,
+            },
+            body: JSON.stringify({
+              image_id: "BJa4kxc4X",
+              value: 1,
+            }),
+          });
+          const data = await respuesta.json();
+          console.log("Voto registrado:", data);
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      }
+
+      // FUNCIÓN 3: Ver historial de votos (mejorada: muestra en pantalla)
+      async function verVotos() {
+        try {
+          const respuesta = await fetch("https://api.thedogapi.com/v1/votes", {
+            method: "GET",
+            headers: {
+              "x-api-key": API_KEY,
+            },
+          });
+          const data = await respuesta.json();
+
+          const contenedor = document.getElementById("mostrar");
+          contenedor.innerHTML = ""; // Limpiar antes de mostrar
+
+          // Recorre cada voto y muéstralo en pantalla
+          data.forEach((voto) => {
+            const div = document.createElement("div");
+            div.textContent = `Voto #${voto.id} - Imagen: ${voto.image_id} - Valor: ${voto.value}`;
+            contenedor.appendChild(div);
+          });
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      }
+    </script>
+  </body>
+</html>
