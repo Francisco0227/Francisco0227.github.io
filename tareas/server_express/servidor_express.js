@@ -13,12 +13,15 @@ const app = express();
 // express.static le dice a Express qué carpeta tiene los archivos públicos (imágenes, css)
 app.use(express.static('public'));
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const connection = mysql.createConnection({
-    host: "mysql-31efc894-tec-f26e.e.aivencloud.com",
-    port: 20902,
-    user: "avnadmin",
-    password: "AVNS_GJwkU29Bq2KswwA_MOt",
-    database: "defaultdb"
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 connection.query('SELECT * FROM donantes;', (error, resultados) => {
