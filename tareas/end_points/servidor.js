@@ -1,5 +1,4 @@
 import http from 'http';
-import { stringify } from 'querystring';
 
 // ---- DATOS -
 const tiendas = {
@@ -15,6 +14,12 @@ const limites = {
     peter: 5000,
     david: 12000
 };
+
+const cupones = {
+    A1234: 15,
+    B4892: 23,
+    C329048: 50
+}
 
 // ---- ENDPOINTS ----
 
@@ -134,13 +139,64 @@ function realizarPago(req, res) {
 // MIS DOS ENDPOINTS
 // ENDPOINT 5: POST /api/v1/cuentas  (acceder a cuenta)
 function accederCuenta(req, res) {
-    // También es POST
+    let body = '';
+
+    req.on('data', (chunk) => {
+        body += chunk;
+    });
+
+    req.on('end', () =>{
+        const datos = JSON.parse(body);
+
+        const email = datos.email;
+        const contrasena = datos.contrasena;
+
+        if (!email || !contrasena){
+            res.writeHead(400, {'Content-Type': 'application/json'});
+            res.end (JSON.stringify({
+                error: 'hace falta email o contrasena'
+            }));
+            return;
+        }
+
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({
+            mensaje: 'Entraste a tu cuenta exitosamente'
+        }))
+    })
 }
 
 // ENDPOINT 6: GET /api/v1/cupones
 function getCupones(req, res) {
-    // Escríbelo tú, es GET como getConvenio
+    const urlObj = new URL(req.url, 'http://localhost');
+    const cupon = urlObj.searchParams.get('cupon');
+
+    if (!cupon){
+        res.writeHead (400, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({
+            error: 'Falta parametro cupon'
+        }));
+        return;
+    }
+
+    const porcentaje_descuento = cupones[cupon];
+
+    if (!porcentaje_descuento) {
+        res.writeHead(404, {'Content-Type': 'application/json'});
+        res.end (JSON.stringify({
+            error: 'No es un cupon valido'
+        }));
+        return
+    }
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.end(JSON.stringify({
+        cupon: cupon,
+        porcentaje_descuento: `${porcentaje_descuento}%`
+        
+    }));
+
 }
+
 
 // ---- SERVIDOR ----
 const servidor = http.createServer((req, res) => {
