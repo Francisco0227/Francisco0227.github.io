@@ -197,6 +197,17 @@ function getCupones(req, res) {
 
 }
 
+function agregarCORS(res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+}
+
+function getTodosLosCupones(req, res) {
+    agregarCORS(res); // ← agrega esta línea
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(cupones));
+}
+
 
 // ---- SERVIDOR ----
 const servidor = http.createServer((req, res) => {
@@ -214,11 +225,14 @@ const servidor = http.createServer((req, res) => {
     } else if (url === '/api/v1/cuentas' && metodo === 'POST') {
         accederCuenta(req, res);
     } else if (url.startsWith('/api/v1/cupones') && metodo === 'GET') {
-        getCupones(req, res);
-    } else {
+        getCupones(req, res); 
+    } else if (url === '/api/v1/todos-los-cupones' && metodo === 'GET') {
+    getTodosLosCupones(req, res);
+    }else {
         res.writeHead(404, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: 'Ruta no encontrada' }));
     }
+
 });
 
 const puerto = 1984;
