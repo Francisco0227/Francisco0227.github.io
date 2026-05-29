@@ -4,6 +4,7 @@ import VideoElemento from './lib/VideoElemento.svelte';
 
 let idVideo = $state('CVwZfRO6tbc');
 
+import MiMapa from './lib/MiMapa.svelte';
 </script>
 
 <main>
@@ -19,4 +20,5 @@ Hola
 
 <VideoElemento id={idVideo} />
 
+<MiMapa />
 </main>
