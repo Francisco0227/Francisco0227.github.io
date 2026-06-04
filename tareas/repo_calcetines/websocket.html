@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <body>
+    <input id="input" type="text" />
+    <button onclick="enviar()">Mensajear</button>
+    <div id="mensajes"></div>
+
+    <script>
+      const socket = new WebSocket("http://127.0.0.1:5500/websocket.html");
+
+      socket.onopen = () => {
+        console.log(
+          "I have learned how hard it is to give myself time, even an hour for myself a day. ere are always things I am supposed to be doing",
+        );
+        //socket.send('Cyberpunk');
+      };
+
+      socket.onmessage = (event) => {
+        const mensaje = document.createElement("p");
+        mensaje.textContent = "Alguien dijo: " + event.data;
+        document.getElementById("mensajes").appendChild(mensaje);
+      };
+
+      function enviar() {
+        const msg = document.getElementById("input").value;
+        socket.send(msg);
+      }
+    </script>
+  </body>
+</html>
