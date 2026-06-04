@@ -1,65 +1,39 @@
-// foto-componente.js
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actividad_fotos</title>
 
-class FotoGaleria extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Galeria de fotos de actividad de componentes en HTML</h1>
 
-  connectedCallback() {
-    // Obtener las fotos desde los atributos o datos internos
-    const fotos = JSON.parse(this.getAttribute('fotos') || '[]');
-    
-    this.shadowRoot.innerHTML = `
-      <style>
-        .galeria {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-          gap: 20px;
-          padding: 20px;
-        }
-
-        .tarjeta {
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          overflow: hidden;
-          background: #fff;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .tarjeta img {
-          width: 100%;
-          height: 200px;
-          object-fit: cover;
-          display: block;
-        }
-
-        .descripcion {
-          padding: 15px;
-          font-family: sans-serif;
-          font-size: 14px;
-          color: #333;
-        }
-
-        @media (max-width: 600px) {
-          .galeria {
-            grid-template-columns: 1fr; /* 1 columna en móviles */
-          }
-        }
-      </style>
-
-      <div class="galeria">
-        ${fotos.map(foto => `
-          <div class="tarjeta">
-            <img src="${foto.url}" alt="${foto.titulo}">
-            <div class="descripcion">
-              <p>${foto.descripcion}</p>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    `;
-  }
-}
-
-customElements.define('foto-galeria', FotoGaleria);
+    <foto-galeria
+      fotos='[
+    {"url": "foto1.jpeg", "descripcion": "Foto de componentes del cielo: consideré a los arboles como un componente del cielo porque si bien no estan hasta arriba, cuando veo el cielo suale haber un árbol que acompaña la vista."},
+    {"url": "foto2.jpeg", "descripcion": "Primer componente creado en JS y HTML"},
+    {"url": "foto3.jpeg", "descripcion": "Foto del componente de mi compañero"},
+    {"url": "foto4.jpeg", "descripcion": "Foto de la estructura del componente por consola de mi compañero"},
+    {"url": "foto5.jpeg", "descripcion": "Foto del resultado de los componentes entre mi equipo"},
+    {"url": "foto6.jpeg", "descripcion": "Resultado con compañero del componente de video (con la pelicula más mala pero que a la vez le gustó y la noticia más interesante de la decada pasada)"},
+    {"url": "foto7.jpeg", "descripcion": "Modificación para el componente de oferta de mi compañero (se sobreescribe el texto agregado como la nueva oferta)"},
+    {"url": "foto8.jpeg", "descripcion": "Modificación para el componente de oferta (foto con compañero)"},
+    {"url": "foto9.jpg", "descripcion": "Componente de video con Svelte"}
+  ]'
+    >
+    </foto-galeria>
+  </body>
+</html>
